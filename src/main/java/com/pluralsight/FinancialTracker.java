@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 public class FinancialTracker {
 
-//            FileWriter writer = new FileWriter("inventory.csv");
-//            BufferedWriter bufWriter =  new BufferedWriter(fileWriter);
-//            writer.write("inventory.csv");
+        //  FileWriter writer = new FileWriter("inventory.csv");
+        //  BufferedWriter bufWriter =  new BufferedWriter(fileWriter);
+        //  writer.write("inventory.csv");
 
 
     private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
@@ -30,7 +30,7 @@ public class FinancialTracker {
 
     public static void main(String[] args) {
 
-//        loadTransactions(FILE_NAME);
+        //        loadTransactions(FILE_NAME);
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -64,10 +64,11 @@ public class FinancialTracker {
                     break;
             }
         }
-//        scanner.close();
+        //scanner.close();
     }
 
 
+//is this all transactions? Does this need to be in order?
     public static void loadTransactions(String fileName) {
         try {
             ArrayList<Transaction> transactions = new ArrayList<Transaction>();
@@ -84,14 +85,13 @@ public class FinancialTracker {
                 String amount = parts[4];
             }
             bufReader.close();
+            // If the file does not exist, it should be created.
+            // Each line of the file represents a single transaction in the following format:
         } catch (Exception e) {
             System.out.println("There was an issue with reading the file.");
         }
-    }
-    // If the file does not exist, it should be created.
-    // Each line of the file represents a single transaction in the following format:
-   
 
+    }
 
     private static void addDeposit(Scanner scanner) {
         LocalDate today = LocalDate.now();
@@ -308,7 +308,8 @@ public class FinancialTracker {
             switch (input) {
 
             case "1":
-//currently only showing the date of the first of month-need it to print just the lines from that month
+//currently only showing the first of month
+//need it to print just the lines from the first to currentDate
 //so I just do the first of the month to current date?
                 try {
                     ArrayList<Transaction> transactions = new ArrayList<Transaction>();
@@ -331,12 +332,13 @@ public class FinancialTracker {
                     break;
 
                 } catch (Exception e) {
-                    System.out.println("There was an issue with reading the file or parsing dates.");
-//  ??? e.printStackTrace();
+                    System.out.println("There was an issue with reading the file or parsing dates.");;
                 }
 
                 case "2":
-
+//currently printing all matches with the same month
+//also shows the year prior
+//  ??? e.printStackTrace();
                     try {
                         ArrayList<Transaction> transactions = new ArrayList<Transaction>();
                         String file = "transactions.csv";
@@ -360,19 +362,43 @@ public class FinancialTracker {
 
                     } catch (Exception e) {
                         System.out.println("There was an issue with reading the file or parsing dates.");
-//  ??? e.printStackTrace();
                     }
                     //take in current time and backdate 30 days and display results
                     // Generate a report for all transactions within the previous month,
                     // including the date, time, description, vendor, and amount for each transaction.
+
+
+
+//not sure how to actually print the line if statements are tricky
+// was I supposed to parse the date into smaller parts?
+
                 case "3":
-
-
+                    try {
+                        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+                        String file = "transactions.csv";
+                        BufferedReader bufReader = new BufferedReader(new FileReader(file));
+                        String line = bufReader.readLine();
+                        System.out.println("Please enter the current date");
+                        while ((line = bufReader.readLine()) != null) {
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+                            LocalDate currentDate = LocalDate.parse(scanner.nextLine());
+                            LocalDate firstOfYear = currentDate.withDayOfYear(1);
+                            LocalDate endOfYear = currentDate;
+                            LocalDate endDate = currentDate;
+                            String firstOfYearString = firstOfYear.format(formatter);
+                            if (firstOfYear.format(DateTimeFormatter.ofPattern("yyyy-MM")).equals(firstOfYearString))
+                                System.out.println(firstOfYear);
+                        }
+                        bufReader.close();
+                    } catch (Exception e) {
+                        System.out.println("There was an issue with reading the file or parsing dates.");
+                    }break;
                     // Generate a report for all transactions within the current year,
                     // including the date, time, description, vendor, and amount for each transaction.
 
                 case "4":
-//currently only showing the previous year but not transactions
+//currently showing the previous year but not transactions
+//not printing the line
 //e.printStackTrace(); // Optional for debugging
                     try {
                         ArrayList<Transaction> transactions = new ArrayList<Transaction>();
@@ -398,11 +424,10 @@ public class FinancialTracker {
                         }
                     } catch (Exception e) {
                         System.out.println("There was an issue with reading the file or parsing dates.");
-
                     }
 
                 case "5":
-                    //need to call the methods
+//need to call the methods??
                 try {
                     ArrayList<Transaction> transactions = new ArrayList<Transaction>();
                     String file = "transactions.csv";
@@ -421,43 +446,28 @@ public class FinancialTracker {
                         if (userVendor.toLowerCase().contains(userVendor.toLowerCase())) {
                             System.out.println(line);
                         }
-//                        else{
-//                            System.out.println("doesn't match");
-//                        }
                         bufReader.close();
                         break;
                     }
                 } catch (Exception e) {
                     System.out.println("There was an issue with reading the file or parsing dates.");
-//            e.printStackTrace(); // Optional for debugging
                 }
-                
-//search by custom date==============================================================================================================
 
-//                    System.out.println("Please enter dates to search | Example: YYYY-MM-DD");
-//                    System.out.print("Start Date");
-//                    System.out.print("End Date");
-//                     startDate = currentDate.withDayOfMonth(1);
-//                     endDate = currentDate;
-
-//                    filterTransactionsByDate(
-//                            startDate,endDate);
                 case "0":
                     running = false;
                 default:
-
                     break;
             }
         }
     }
 
+//Does this need to be filtered in order? or just within that date range?
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
         boolean dateFound = false;
         try {
             String file = "transactions.csv";
             BufferedReader bufReader = new BufferedReader(new FileReader(file));
             String line = bufReader.readLine(); // Skip header
-
             while ((line = bufReader.readLine()) != null) {
                 System.out.println("Please enter dates to search | Example: YYYY-MM-DD");
                     System.out.print("Start Date");
@@ -471,8 +481,6 @@ public class FinancialTracker {
                 String description = parts[2];
                 String vendor = parts[3];
                 String amount = parts[4].trim();
-
-
                 if ((date.isEqual(startDate) || date.isAfter(startDate)) &&
                         (date.isEqual(endDate) || date.isBefore(endDate))) {
                     System.out.println(line);
@@ -480,30 +488,22 @@ public class FinancialTracker {
                 }
             }
             bufReader.close();
-
             if (!dateFound) {
                 System.out.println("There were no dates found in that range.");
             }
-
         } catch (Exception e) {
             System.out.println("There was an issue with reading the file or parsing dates.");
-//            e.printStackTrace(); // Optional for debugging
         }
     }
     }
 
-
-
-
-//why is it still printing out the catch error?
-//catch edgecases where the number entered is not the correct amount
+//catch edge cases where the number entered is not the correct amount
 // format to display no results found between  *Jan-01-2023-Jan-01-2024================================================================
 //should i have a method to path in the conversation and use the different switch cases as parameters?
 
 
 
 
-//    private static void filterTransactionsByVendor(String vendor) {
 //private static void filterTransactionsByVendor(String vendor) {
 
         // This method filters the transactions by vendor and prints a report to the console.
@@ -511,8 +511,7 @@ public class FinancialTracker {
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
-//    }
-
+        // }
 
 
 
