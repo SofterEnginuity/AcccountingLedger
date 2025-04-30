@@ -239,32 +239,32 @@ public class FinancialTracker {
             LocalDate date = LocalDate.now();
             switch (input) {
 
-
-//catch/errors for each case
                 case "1":
                     System.out.println("Month to Date Report");
                     LocalDate firstOfMonth = LocalDate.now().withDayOfMonth(1);
-
                     filterTransactionsByDate(firstOfMonth, date);
                     break;
 
-//printing March x from all years
+//printing each in a loop?
                 case "2":
                     System.out.println("Last Month's Report");
                     LocalDate lastMonth = LocalDate.now().minusMonths(1).withDayOfMonth(1);
                     LocalDate thisMonth = LocalDate.now().withDayOfMonth(1);
                     filterTransactionsByDate(date, lastMonth);
                     break;
+//printing april from all years
                 case "3":
                     System.out.println("Year to Date Report");
                     LocalDate firstOfYear = LocalDate.now().withDayOfYear(1);
                     filterTransactionsByDate(LocalDate.now(), firstOfYear);
                     break;
+//still shows all items
                 case "4":
                     System.out.println("Last Year's Report");
                     LocalDate lastYear = LocalDate.now().minusYears(1).withDayOfYear(1);
-                    filterTransactionsByDate(lastYear, lastYear.withDayOfYear(365));
+                    filterTransactionsByDate(lastYear.withDayOfYear(365), lastYear);
                     break;
+
                 case "5":
                     System.out.println("Search by Vendor");
                     String vendor = scanner.nextLine();
@@ -290,20 +290,19 @@ public class FinancialTracker {
             System.out.println("No transactions found for the given date: " + conditionDate);
         }
     }
-
-
+//Error reading the file even when condition is met
 // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
     private static void filterTransactionsByVendor(String vendor) {
         loadTransactions(FILE_NAME);
         boolean found = false;
         for (Transaction transaction : transactions) {
             if (vendor.equalsIgnoreCase(transaction.getVendor())) {
-                System.out.println(transaction);  // Print matching transactions
+                System.out.println(transaction);
                 found = true;
             }
-        }
-        if (!found) {
+        }if (!found) {
             System.out.println("No transactions found for vendor: " + vendor);
         }
+
     }
     }
