@@ -9,8 +9,6 @@ public class Transaction {
     private String description;
     private String vendor;
     private double amount;
-    private LocalDate startDate;
-    private LocalDate endDate;
 
 
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
@@ -19,9 +17,8 @@ public class Transaction {
         this.description = description;
         this.vendor = vendor;
         this.amount = amount;
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
+
 
     public LocalDate getDate() {
         return date;
@@ -63,30 +60,16 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
     @Override
     public String toString() {
-        return "Transaction{" +
-                "purchaseDate='" + date + '\'' +
-                ", purchaseTime='" + time + '\'' +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                ", amount='" + amount + '\'' +
-                '}';
+        return
+                "|" + date  +
+                "|" + time  +
+                "|" + description +
+                "|" + vendor  +
+                "|'" + amount  +
+                "|";
+
+
     }
 }
