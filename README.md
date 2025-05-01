@@ -1,11 +1,7 @@
 ##  Financial Tracker
 
 ## 
-This app was created to allow a user to track spending habits by filtering to show all deposits(credit), payment. It also allows for specific reports to be ran such as Month to date, Year to Date and even search by the vendor.
-
-
-
-![Class Diagram](path/to/your/class_diagram.png)
+This app was created to allow a user to track spending habits by allowing deposits(credits) and payments(debits) to be made and provide a menu show all transactions or filter by type. It also allows for specific reports to be ran such as Month to date, Year to Date, Previous year and even results filtered by the vendor.
 
 ## User Stories
 As a user, I would like to see a home screen that displays all options including exit.
@@ -28,7 +24,6 @@ As a user I would like to see a list of all transactions from a specified Vendor
 
 
 ## Setup
-
 Instructions on how to set up and run the project using IntelliJ IDEA.
 
 ### Prerequisites
@@ -37,7 +32,6 @@ Instructions on how to set up and run the project using IntelliJ IDEA.
 - Java SDK: Make sure Java SDK is installed and configured in IntelliJ.
 
 ### Running the Application in IntelliJ
-
 Follow these steps to get your application running within IntelliJ IDEA:
 
 1. Open IntelliJ IDEA.
@@ -48,37 +42,49 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java 
-- Any additional libraries or frameworks used in the project.
+- Java 17.0.14
+
 
 ## Demo
+### Transactions
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
+Make a Deposit
+![Application Screenshot](https://i.imgur.com/VIdasoM.png)
 
-![Application Screenshot](path/to/your/screenshot.png)
+Make a Payment
+![Application Screenshot](https://i.imgur.com/ZwIdT0R.png)
+
+Display all Transactions
+![Application Screenshot](https://i.imgur.com/NkWjwgd.png)
+
+### Reports
+Month to Date
+![Application Screenshot]()
+
+
+Previous Year
+![Application Screenshot](https://i.imgur.com/UpHj8xp.png)
+
+Year To Date
+![Application Screenshot](https://i.imgur.com/jFdsdHL.png)
+
+Filter by Vendor
+![Application Screenshot](https://i.imgur.com/0RHsrOc.png)
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
-
+- Simply setting the first letter of vendor names could go a long way for professionalism and aesthetic
+- Balance tracking to transform this into an active Finance Tracker rather than profit/loss tracking
+- Users should be able to search by amount, item, color or customer keyword of their choice
+- Automated/ Recurring payments would also be cool to incorporate
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
+Tutorials, articles, or documentation that helped me complete this project:
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [Arrays and Utility Methods](https://www.pluralsight.com/resources/blog/guides/array-and-utility-methods)
+- [W3Schools-Dates and Formatting](https://www.w3schools.com/java/java_date.asp)
+- [Professor (Raymond Maroun)'s  GutHub](https://github.com/RayMaroun)
 
-## Team Members
+## Thanks to You
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
-
-## Thanks
-
-Express gratitude towards those who provided help, guidance, or resources:
-
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+Thank you to Raymond Maroun for continuous support and guidance!🥔
